@@ -47,12 +47,10 @@ services:
       - INFLUX_BUCKET=smart_energy
       - MQTT_BROKER=broker.hivemq.com
       - MQTT_PORT=1883
-      # Задаємо координати Берліна, щоб прогноз погоди збігався з фізичною локацією
-      - LAT=52.52
-      - LON=13.40
+      - LAT=50.45
+      - LON=30.46
       - TEST_MODE=True
     volumes:
-      # Життєво важливо для збереження моделей (MLOps) та логів при перезапусках контейнера
       - ./smart_energy_edge/data:/app/data
       - ./smart_energy_edge/models:/app/models
       - ./smart_energy_edge/logs:/app/logs
@@ -71,7 +69,6 @@ services:
     environment:
       - TZ=Europe/Berlin
       - CHOKIDAR_USEPOLLING=true
-      # Прокидаємо адреси бекендів у React, інакше він не знайде API
       - VITE_TELEMETRY_API=http://localhost:6006/api/v1
       - VITE_ML_API=http://localhost:8000/api
     depends_on:
