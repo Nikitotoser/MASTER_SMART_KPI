@@ -11,19 +11,6 @@ const Header = ({ onExport }) => {
           Панель диспетчеризації та MLOps
         </p>
       </div>
-      <button
-        onClick={onExport}
-        style={{
-          padding: '10px 24px', backgroundColor: '#3B82F6', color: 'white',
-          border: 'none', borderRadius: '10px', cursor: 'pointer', fontSize: '14px',
-          fontWeight: '600', boxShadow: '0 4px 6px -1px rgba(59, 130, 246, 0.3)',
-          transition: 'all 0.2s'
-        }}
-        onMouseOver={(e) => e.target.style.backgroundColor = '#2563EB'}
-        onMouseOut={(e) => e.target.style.backgroundColor = '#3B82F6'}
-      >
-        Експорт CSV
-      </button>
     </div>
   );
 };

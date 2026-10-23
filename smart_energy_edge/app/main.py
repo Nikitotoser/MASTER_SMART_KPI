@@ -9,7 +9,8 @@ from app.core.config import (
     INTERVAL_PREDICTION_MIN, 
     INTERVAL_BACKFILL_MIN,
     TEST_MODE,
-    INTERVAL_EVALUATION_MIN
+    INTERVAL_EVALUATION_MIN,
+    INTERVAL_TRAIN_MIN
 )
 from app.db.database import init_db, save_prediction
 from app.services.weather import fetch_and_save_weather, fetch_future_weather
@@ -89,6 +90,7 @@ async def lifespan(app: FastAPI):
         scheduler.add_job(prediction_job, 'interval', minutes=INTERVAL_PREDICTION_MIN, misfire_grace_time=60)
         scheduler.add_job(maintenance_job, 'interval', minutes=INTERVAL_BACKFILL_MIN, misfire_grace_time=60)
         scheduler.add_job(evaluate_models, 'interval', minutes=INTERVAL_EVALUATION_MIN, misfire_grace_time=60)
+        scheduler.add_job(train_model, 'interval', minutes=INTERVAL_TRAIN_MIN, misfire_grace_time=60)
         
         scheduler.start()
         logger.info("⏱ Планувальник задач успішно запущено.")

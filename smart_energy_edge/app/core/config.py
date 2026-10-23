@@ -41,6 +41,8 @@ if TEST_MODE:
     INTERVAL_BACKFILL_MIN: Final[int] = 5      # Пошук пропусків (кожні 5 хв)
     INTERVAL_EVALUATION_MIN: Final[int] = 4    # MLOps оцінка моделей (кожні 4 хв)
     EVALUATION_WINDOW_HOURS: Final[int] = 1    # Вікно оцінки: остання 1 година
+    INTERVAL_TRAIN_MIN: Final[int] = 5       # Тренування нової моделі (кожні 5 хв)
+    MIN_DATA_POINTS: Final[int] = 5          # Мінімум записів для старту навчання
 else:
     # Реальні налаштування для Production 
     INTERVAL_WEATHER_MIN: Final[int] = 60      # Поточна погода (раз на годину)
@@ -49,3 +51,5 @@ else:
     INTERVAL_BACKFILL_MIN: Final[int] = 720    # Пошук пропусків (двічі на добу)
     INTERVAL_EVALUATION_MIN: Final[int] = 1440 # MLOps оцінка моделей (раз на добу)
     EVALUATION_WINDOW_HOURS: Final[int] = 24   # Вікно оцінки: останні 24 години
+    INTERVAL_TRAIN_MIN: Final[int] = 720     # Тренування нової моделі (раз на 12 годин)
+    MIN_DATA_POINTS: Final[int] = 15         # Мінімум записів для старту навчання

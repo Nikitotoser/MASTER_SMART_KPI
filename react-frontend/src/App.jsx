@@ -7,7 +7,6 @@ import TelemetryChart from './components/TelemetryChart';
 import PredictionChart from './components/PredictionChart';
 import DataTable from './components/DataTable';
 
-// Ініціалізація ендпоінтів через змінні середовища для підтримки контейнеризації
 const TELEMETRY_API = import.meta.env.VITE_TELEMETRY_API || 'http://localhost:6006/api/v1';
 const ML_API = import.meta.env.VITE_ML_API || 'http://localhost:8000/api/predictions';
 
@@ -17,10 +16,6 @@ function App() {
   const [modelMetrics, setModelMetrics] = useState({ version: '-', mae: '0', mse: '0' });
   const [status, setStatus] = useState('ОФЛАЙН');
 
-  /**
-   * Нормалізація часових міток (UNIX timestamp)
-   * Забезпечує сумісність з різними форматами відповідей від мікросервісів
-   */
   const getSafeTimeMs = (t) => {
     if (!t) return Date.now();
     if (typeof t === 'string' && !isNaN(Number(t))) t = Number(t);
@@ -29,10 +24,6 @@ function App() {
     return isNaN(parsed) ? Date.now() : parsed;
   };
 
-  /**
-   * Асинхронний запит телеметрії реального часу
-   * Оновлює стан графіків та статус підключення Edge-пристрою
-   */
   const fetchTelemetry = async () => {
     try {
       const response = await axios.get(`${TELEMETRY_API}/telemetry/latest?limit=50`);
@@ -46,27 +37,17 @@ function App() {
         power: parseFloat((item.solar_v * item.solar_a).toFixed(2))
       }));
 
-      // Реверсування масиву для коректного рендерингу осей графіка
       setTelemetry(processedData.reverse());
-      
-      // Детекція втрати зв'язку (Таймаут: 15 секунд)
       const nowSeconds = Math.floor(Date.now() / 1000);
       setStatus((nowSeconds - rawData[0].ts) < 15 ? 'ОНЛАЙН' : 'ОФЛАЙН');
     } catch (error) {
-      console.error("Помилка синхронізації телеметрії:", error);
       setStatus('ОФЛАЙН');
     }
   };
 
-  /**
-   * Асинхронний запит ML-прогнозів та MLOps метрик
-   */
   const fetchMLData = async () => {
     try {
-      // Базова URL-адреса з твого docker-compose
       const ML_BASE = import.meta.env.VITE_ML_API || 'http://localhost:8000/api';
-
-      // 1. Точний шлях до прогнозів
       const predRes = await axios.get(`${ML_BASE}/predictions/latest`);
       if (predRes.data?.times && predRes.data?.powers) {
         const formattedPreds = predRes.data.times.map((t, i) => ({
@@ -76,35 +57,46 @@ function App() {
         }));
         setPredictions(formattedPreds);
       }
-
-      // 2. Точний шлях до метрик
       const metricRes = await axios.get(`${ML_BASE}/model/metrics`);
       if (!metricRes.data.error) setModelMetrics(metricRes.data);
+    } catch (error) {}
+  };
 
+  // Функції експорту
+  const downloadCSV = async (endpoint, filename) => {
+    try {
+        const response = await fetch(`${TELEMETRY_API}${endpoint}`);
+        if (!response.ok) throw new Error('Немає даних');
+        
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        window.URL.revokeObjectURL(url);
     } catch (error) {
-      console.error("Помилка синхронізації з ML-сервісом:", error);
+        alert(error.message);
     }
   };
 
-  /**
-   * Ініціалізація життєвого циклу компонента та фонового поллінгу
-   */
+  const exportTelemetry = () => downloadCSV('/export/telemetry?days=30', 'telemetry.csv');
+  const exportPredictions = () => downloadCSV('/export/predictions?days=30', 'predictions.csv');
+
   useEffect(() => {
     fetchTelemetry();
     fetchMLData();
-
-    const telInterval = setInterval(fetchTelemetry, 2000); // Оновлення HMI кожні 2 сек
-    const mlInterval = setInterval(fetchMLData, 300000);   // Оновлення ML кожні 5 хв
-
-    return () => {
-      clearInterval(telInterval);
-      clearInterval(mlInterval);
-    };
+    const telInterval = setInterval(fetchTelemetry, 2000);
+    const mlInterval = setInterval(fetchMLData, 300000);
+    return () => { clearInterval(telInterval); clearInterval(mlInterval); };
   }, []);
 
   return (
     <div style={{ padding: '30px 40px', backgroundColor: '#F8FAFC', minHeight: '100vh' }}>
-      <Header onExport={() => console.log("Ініціалізація експорту CSV")} />
+      {/* Хедер без кнопки експорту */}
+      <Header />
       
       <KPICards 
         status={status} 
@@ -113,8 +105,27 @@ function App() {
         modelMetrics={modelMetrics} 
       />
 
-      <TelemetryChart data={telemetry} />
-      <PredictionChart data={predictions} />
+      {/* Графік Телеметрії з кнопкою */}
+      <div style={{ marginBottom: '24px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
+          <h2 style={{ margin: 0, fontSize: '18px', color: '#1E293B' }}>Графік Телеметрії</h2>
+          <button onClick={exportTelemetry} style={{ padding: '8px 16px', background: '#3B82F6', color: '#fff', border: 'none', borderRadius: '8px', cursor: 'pointer' }}>
+            Експорт CSV
+          </button>
+        </div>
+        <TelemetryChart data={telemetry} />
+      </div>
+
+      {/* Графік Прогнозу з кнопкою */}
+      <div style={{ marginBottom: '24px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
+          <h2 style={{ margin: 0, fontSize: '18px', color: '#1E293B' }}>Графік Прогнозу</h2>
+          <button onClick={exportPredictions} style={{ padding: '8px 16px', background: '#8B5CF6', color: '#fff', border: 'none', borderRadius: '8px', cursor: 'pointer' }}>
+            Експорт CSV
+          </button>
+        </div>
+        <PredictionChart data={predictions} />
+      </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(500px, 1fr))', gap: '24px' }}>
          <DataTable title="📡 Журнал телеметрії (Факт)" data={telemetry} type="telemetry" />

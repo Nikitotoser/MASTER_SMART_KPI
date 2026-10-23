@@ -9,7 +9,7 @@ import lightgbm as lgb
 import joblib
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 from influxdb_client import InfluxDBClient
-from app.core.config import DB_PATH, MODELS_DIR, EVALUATION_WINDOW_HOURS
+from app.core.config import DB_PATH, MODELS_DIR, EVALUATION_WINDOW_HOURS, MIN_DATA_POINTS
 from app.db.database import INFLUX_URL, INFLUX_TOKEN, INFLUX_ORG, INFLUX_BUCKET
 
 logger = logging.getLogger(__name__)
@@ -17,24 +17,6 @@ logger = logging.getLogger(__name__)
 # Глобальний кеш для утримання моделі в оперативній пам'яті (уникаємо I/O операцій на кожен запит)
 _active_model = None
 _active_model_version: Optional[str] = None
-
-
-def load_active_model() -> None:
-    """Шукає найсвіжішу модель на диску і завантажує її в оперативну пам'ять."""
-    global _active_model, _active_model_version
-    try:
-        models = glob.glob(os.path.join(MODELS_DIR, "lgb_model_v*.pkl"))
-        if not models:
-            logger.warning("Моделі не знайдено. Потрібно запустити навчання (train_model).")
-            return
-            
-        latest_model_path = max(models, key=os.path.getctime)
-        _active_model = joblib.load(latest_model_path)
-        _active_model_version = os.path.basename(latest_model_path).replace('.pkl', '')
-        
-        logger.info("Успішно завантажено модель %s в оперативну пам'ять.", _active_model_version)
-    except Exception as e:
-        logger.error("Помилка при завантаженні моделі в пам'ять: %s", e, exc_info=True)
 
 
 def fetch_from_central_db() -> bool:
@@ -91,7 +73,7 @@ def train_model() -> bool:
         '''
         df_weather = query_influx_to_df(weather_query)
 
-        if len(df_telemetry) < 50 or len(df_weather) < 50:
+        if len(df_telemetry) < MIN_DATA_POINTS or len(df_weather) < MIN_DATA_POINTS:
             logger.warning("Недостатньо локальних даних для навчання.")
             if not fetch_from_central_db():
                 return False 
@@ -138,9 +120,26 @@ def train_model() -> bool:
         return False
 
 
+def load_active_model() -> None:
+    """Шукає найсвіжішу модель на диску і завантажує її в оперативну пам'ять."""
+    global _active_model, _active_model_version
+    try:
+        models = glob.glob(os.path.join(MODELS_DIR, "lgb_model_v*.pkl"))
+        if not models:
+            logger.warning("Моделі не знайдено. Потрібно запустити навчання (train_model).")
+            return
+            
+        latest_model_path = max(models, key=os.path.getctime)
+        _active_model = joblib.load(latest_model_path)
+        _active_model_version = os.path.basename(latest_model_path).replace('.pkl', '')
+        
+        logger.info("🟢 АКТИВНА МОДЕЛЬ: %s завантажена для генерації нових прогнозів.", _active_model_version)
+    except Exception as e:
+        logger.error("Помилка при завантаженні моделі в пам'ять: %s", e, exc_info=True)
+
 def evaluate_models() -> None:
     """Аналізує прогнози за минулу добу (MLOps: Model Drift Detection)."""
-    logger.info("Запуск MLOps: Оцінка точності моделей...")
+    logger.info("🔍 MLOps: Пошук прогнозів та реальної телеметрії для порівняння...")
     
     try:    
         preds_query = f'''
@@ -160,7 +159,7 @@ def evaluate_models() -> None:
         df_actual = query_influx_to_df(actual_query)
 
         if df_preds.empty or df_actual.empty:
-            logger.info("Немає даних для оцінки (система акумулює дані).")
+            logger.info("⏳ Оцінка відкладена: недостатньо історії для перевірки моделі.")
             return
 
         df_actual['pzem_power_w'] = df_actual['solar_v'] * df_actual['solar_a']
@@ -174,12 +173,11 @@ def evaluate_models() -> None:
         ).dropna(subset=['pzem_power_w', 'predicted_power_w'])
 
         if df_merged.empty:
-            logger.info("Не вдалося зіставити прогнози з реальністю (відсутні перетини у часі).")
+            logger.info("⏳ Оцінка відкладена: нові моделі ще не накопичили достатньо прогнозів у минулому часі для перевірки.")
             return
 
-        models_tested = df_merged['model_version'].unique()
+        models_tested = sorted(df_merged['model_version'].unique())
         
-        # Безпечне підключення до реляційної бази для логування метрик
         with sqlite3.connect(DB_PATH) as conn:
             cursor = conn.cursor()
             
@@ -194,19 +192,19 @@ def evaluate_models() -> None:
                     VALUES (?, ?, ?)
                 """, (model_ver, mae, mse))
                 
-                logger.info("📊 Модель %s перевірена. MAE: %.2f Вт.", model_ver, mae)
+                logger.info("📊 РЕЗУЛЬТАТ ОЦІНКИ: Модель %s -> MAE: %.2f | MSE: %.2f", model_ver, mae, mse)
                 
-                # Автоматична ізоляція (видалення) деградованих моделей
                 if mae > 500:
-                    logger.warning("🚨 УВАГА! Модель %s деградувала. Ініційовано видалення...", model_ver)
+                    logger.warning("🚨 ДЕГРАДАЦІЯ: Модель %s працює погано. Видаляємо...", model_ver)
                     bad_model_path = os.path.join(MODELS_DIR, f"{model_ver}.pkl")
                     if os.path.exists(bad_model_path):
                         os.remove(bad_model_path)
-                        logger.info("🗑 Файл моделі %s видалено.", model_ver)
+                        logger.info("🗑 Файл моделі %s успішно видалено з диска.", model_ver)
                         
-                        # Якщо ми видалили поточну активну модель, потрібно перемкнутися на попередню
                         if _active_model_version == model_ver:
                             load_active_model()
+                else:
+                    logger.info("✅ Модель %s відповідає стандартам якості.", model_ver)
 
             conn.commit()
     except Exception as e:

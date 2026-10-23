@@ -1,26 +1,21 @@
-# Python окружения и кэш
+# Python 
 venv/
 env/
 __pycache__/
 *.pyc
 .pytest_cache/
 
-# Node.js зависимости (Фронтенд)
+# Node.js 
 node_modules/
 dist/
 build/
 .npm/
 
-# ESP32 / PlatformIO сборки
+# ESP32 / PlatformIO 
 .pio/
 
-# Локальные базы, логи и переменные окружения
-logs/
-data/
-.env
-*.env
 
-# Системные файлы редакторов
+# Системні файли
 .vscode/
 .idea/
 .DS_Store

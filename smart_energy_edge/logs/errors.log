@@ -1,0 +1,1464 @@
+2026-04-10 15:23:16 | ERROR    | weather:fetch_future_weather | ❌ Неочікувана помилка при обробці прогнозу погоди: 'list' object has no attribute 'replace'
+Traceback (most recent call last):
+  File "D:\smart_energy_edge\app\services\weather.py", line 71, in fetch_future_weather
+    dt_str = times.replace('T', ' ') + ":00"
+             ^^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'replace'
+2026-04-10 15:23:16 | ERROR    | backfill_weather:get_missing_intervals | ❌ Помилка БД при пошуку пропусків погоди: 'DataFrame' object has no attribute 'tolist'
+Traceback (most recent call last):
+  File "D:\smart_energy_edge\app\services\backfill_weather.py", line 20, in get_missing_intervals
+    missing_days = pd.read_sql_query(query, conn).tolist()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\pandas\core\generic.py", line 6206, in __getattr__
+    return object.__getattribute__(self, name)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AttributeError: 'DataFrame' object has no attribute 'tolist'
+2026-04-10 15:31:00 | ERROR    | weather:fetch_future_weather | ❌ Неочікувана помилка при обробці прогнозу погоди: 'list' object has no attribute 'replace'
+Traceback (most recent call last):
+  File "D:\smart_energy_edge\app\services\weather.py", line 74, in fetch_future_weather
+    dt_str = times.replace('T', ' ') + ":00"
+             ^^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'replace'
+2026-04-10 15:31:00 | ERROR    | backfill_weather:get_missing_intervals | ❌ Помилка БД при пошуку пропусків погоди: 'DataFrame' object has no attribute 'tolist'
+Traceback (most recent call last):
+  File "D:\smart_energy_edge\app\services\backfill_weather.py", line 20, in get_missing_intervals
+    missing_days = pd.read_sql_query(query, conn).tolist()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\pandas\core\generic.py", line 6206, in __getattr__
+    return object.__getattribute__(self, name)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AttributeError: 'DataFrame' object has no attribute 'tolist'
+2026-04-10 15:35:34 | ERROR    | weather:fetch_future_weather | ❌ Неочікувана помилка при обробці прогнозу погоди: Error binding parameter 2: type 'list' is not supported
+Traceback (most recent call last):
+  File "D:\smart_energy_edge\app\services\weather.py", line 79, in fetch_future_weather
+    save_future_weather(dt_str, temps, clouds, solar)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\app\db\database.py", line 97, in save_future_weather
+    cursor.execute("""
+    ~~~~~~~~~~~~~~^^^^
+        INSERT OR REPLACE INTO future_weather (target_time, temp_c, cloud_cover_pct, solar_rad_w_m2, fetched_at)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    """, (target_time, temp, cloud, solar))
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.ProgrammingError: Error binding parameter 2: type 'list' is not supported
+2026-04-10 15:35:34 | ERROR    | backfill_weather:get_missing_intervals | ❌ Помилка БД при пошуку пропусків погоди: 'DataFrame' object has no attribute 'tolist'
+Traceback (most recent call last):
+  File "D:\smart_energy_edge\app\services\backfill_weather.py", line 20, in get_missing_intervals
+    missing_days = pd.read_sql_query(query, conn).tolist()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\pandas\core\generic.py", line 6206, in __getattr__
+    return object.__getattribute__(self, name)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AttributeError: 'DataFrame' object has no attribute 'tolist'
+2026-04-10 15:36:15 | ERROR    | weather:fetch_future_weather | ❌ Неочікувана помилка при обробці прогнозу погоди: Error binding parameter 2: type 'list' is not supported
+Traceback (most recent call last):
+  File "D:\smart_energy_edge\app\services\weather.py", line 79, in fetch_future_weather
+    save_future_weather(dt_str, temps, clouds, solar)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\app\db\database.py", line 97, in save_future_weather
+    cursor.execute("""
+    ~~~~~~~~~~~~~~^^^^
+        INSERT OR REPLACE INTO future_weather (target_time, temp_c, cloud_cover_pct, solar_rad_w_m2, fetched_at)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    """, (target_time, temp, cloud, solar))
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.ProgrammingError: Error binding parameter 2: type 'list' is not supported
+2026-04-10 15:36:15 | ERROR    | backfill_weather:get_missing_intervals | ❌ Помилка БД при пошуку пропусків погоди: 'DataFrame' object has no attribute 'tolist'
+Traceback (most recent call last):
+  File "D:\smart_energy_edge\app\services\backfill_weather.py", line 20, in get_missing_intervals
+    missing_days = pd.read_sql_query(query, conn).tolist()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\pandas\core\generic.py", line 6206, in __getattr__
+    return object.__getattribute__(self, name)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AttributeError: 'DataFrame' object has no attribute 'tolist'
+2026-04-10 15:38:00 | ERROR    | backfill_weather:get_missing_intervals | ❌ Помилка БД при пошуку пропусків погоди: '_iLocIndexer' object has no attribute 'tolist'
+Traceback (most recent call last):
+  File "D:\smart_energy_edge\app\services\backfill_weather.py", line 21, in get_missing_intervals
+    missing_days = pd.read_sql_query(query, conn).iloc.tolist()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: '_iLocIndexer' object has no attribute 'tolist'
+2026-04-10 15:43:16 | ERROR    | ml_pipeline:make_prediction | ❌ Помилка під час генерації прогнозу: to assemble mappings requires at least that [year, month, day] be specified: [day,month,year] is missing
+Traceback (most recent call last):
+  File "D:\smart_energy_edge\app\services\ml_pipeline.py", line 208, in make_prediction
+    df_future = pd.to_datetime(df_future)
+  File "D:\smart_energy_edge\venv\Lib\site-packages\pandas\core\tools\datetimes.py", line 1043, in to_datetime
+    result = _assemble_from_unit_mappings(arg, errors, utc)
+  File "D:\smart_energy_edge\venv\Lib\site-packages\pandas\core\tools\datetimes.py", line 1160, in _assemble_from_unit_mappings
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: to assemble mappings requires at least that [year, month, day] be specified: [day,month,year] is missing
+2026-04-10 15:55:22 | ERROR    | ml_pipeline:make_prediction | ❌ Помилка під час генерації прогнозу: 'DataFrame' object has no attribute 'dt'
+Traceback (most recent call last):
+  File "D:\smart_energy_edge\app\services\ml_pipeline.py", line 211, in make_prediction
+    df_future = df_future.dt.hour
+                ^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\pandas\core\generic.py", line 6206, in __getattr__
+    return object.__getattribute__(self, name)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AttributeError: 'DataFrame' object has no attribute 'dt'
+2026-04-10 15:55:23 | ERROR    | ml_pipeline:make_prediction | ❌ Помилка під час генерації прогнозу: 'DataFrame' object has no attribute 'dt'
+Traceback (most recent call last):
+  File "D:\smart_energy_edge\app\services\ml_pipeline.py", line 211, in make_prediction
+    df_future = df_future.dt.hour
+                ^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\pandas\core\generic.py", line 6206, in __getattr__
+    return object.__getattribute__(self, name)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AttributeError: 'DataFrame' object has no attribute 'dt'
+2026-04-10 16:01:22 | ERROR    | ml_pipeline:make_prediction | ❌ Помилка під час генерації прогнозу: 'DataFrame' object has no attribute 'dt'
+Traceback (most recent call last):
+  File "D:\smart_energy_edge\app\services\ml_pipeline.py", line 211, in make_prediction
+    df_future = df_future.dt.hour
+                ^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\pandas\core\generic.py", line 6206, in __getattr__
+    return object.__getattribute__(self, name)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AttributeError: 'DataFrame' object has no attribute 'dt'
+2026-04-10 16:01:22 | ERROR    | ml_pipeline:make_prediction | ❌ Помилка під час генерації прогнозу: 'DataFrame' object has no attribute 'dt'
+Traceback (most recent call last):
+  File "D:\smart_energy_edge\app\services\ml_pipeline.py", line 211, in make_prediction
+    df_future = df_future.dt.hour
+                ^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\pandas\core\generic.py", line 6206, in __getattr__
+    return object.__getattribute__(self, name)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AttributeError: 'DataFrame' object has no attribute 'dt'
+2026-04-13 14:05:08 | ERROR    | mqtt_client:on_message | ❌ Помилка парсингу JSON з MQTT (можливо биті дані): Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
+Traceback (most recent call last):
+  File "D:\smart_energy_edge\app\services\mqtt_client.py", line 27, in on_message
+    data = json.loads(payload_str)
+  File "C:\Python313\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "C:\Python313\Lib\json\decoder.py", line 345, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\json\decoder.py", line 361, in raw_decode
+    obj, end = self.scan_once(s, idx)
+               ~~~~~~~~~~~~~~^^^^^^^^
+json.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
+2026-04-13 14:05:08 | ERROR    | weather:fetch_future_weather | ❌ Помилка мережі при завантаженні прогнозу погоди на майбутнє: Network Timeout
+Traceback (most recent call last):
+  File "D:\smart_energy_edge\app\services\weather.py", line 58, in fetch_future_weather
+    response = requests.get(url, params=params)
+  File "C:\Python313\Lib\unittest\mock.py", line 1167, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\unittest\mock.py", line 1171, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\unittest\mock.py", line 1226, in _execute_mock_call
+    raise effect
+requests.exceptions.RequestException: Network Timeout
+2026-04-13 14:05:08 | ERROR    | ml_pipeline:evaluate_models | ❌ Помилка під час оцінки (MLOps): to assemble mappings requires at least that [year, month, day] be specified: [day,month,year] is missing
+Traceback (most recent call last):
+  File "D:\smart_energy_edge\app\services\ml_pipeline.py", line 123, in evaluate_models
+    df_preds = pd.to_datetime(df_preds)
+  File "D:\smart_energy_edge\venv\Lib\site-packages\pandas\core\tools\datetimes.py", line 1043, in to_datetime
+    result = _assemble_from_unit_mappings(arg, errors, utc)
+  File "D:\smart_energy_edge\venv\Lib\site-packages\pandas\core\tools\datetimes.py", line 1160, in _assemble_from_unit_mappings
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: to assemble mappings requires at least that [year, month, day] be specified: [day,month,year] is missing
+2026-04-13 14:08:10 | ERROR    | mqtt_client:on_message | ❌ Помилка парсингу JSON з MQTT (можливо биті дані): Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
+Traceback (most recent call last):
+  File "D:\smart_energy_edge\app\services\mqtt_client.py", line 27, in on_message
+    data = json.loads(payload_str)
+  File "C:\Python313\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "C:\Python313\Lib\json\decoder.py", line 345, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\json\decoder.py", line 361, in raw_decode
+    obj, end = self.scan_once(s, idx)
+               ~~~~~~~~~~~~~~^^^^^^^^
+json.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
+2026-04-13 14:08:10 | ERROR    | weather:fetch_future_weather | ❌ Помилка мережі при завантаженні прогнозу погоди на майбутнє: Network Timeout
+Traceback (most recent call last):
+  File "D:\smart_energy_edge\app\services\weather.py", line 58, in fetch_future_weather
+    response = requests.get(url, params=params)
+  File "C:\Python313\Lib\unittest\mock.py", line 1167, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\unittest\mock.py", line 1171, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\unittest\mock.py", line 1226, in _execute_mock_call
+    raise effect
+requests.exceptions.RequestException: Network Timeout
+2026-04-13 14:08:10 | ERROR    | ml_pipeline:evaluate_models | ❌ Помилка під час оцінки (MLOps): 'DataFrame' object has no attribute 'unique'
+Traceback (most recent call last):
+  File "D:\smart_energy_edge\app\services\ml_pipeline.py", line 142, in evaluate_models
+    models_tested = df_merged.unique()
+                    ^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\pandas\core\generic.py", line 6206, in __getattr__
+    return object.__getattribute__(self, name)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AttributeError: 'DataFrame' object has no attribute 'unique'. Did you mean: 'nunique'?
+2026-04-13 14:08:55 | ERROR    | mqtt_client:on_message | ❌ Помилка парсингу JSON з MQTT (можливо биті дані): Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
+Traceback (most recent call last):
+  File "D:\smart_energy_edge\app\services\mqtt_client.py", line 27, in on_message
+    data = json.loads(payload_str)
+  File "C:\Python313\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "C:\Python313\Lib\json\decoder.py", line 345, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\json\decoder.py", line 361, in raw_decode
+    obj, end = self.scan_once(s, idx)
+               ~~~~~~~~~~~~~~^^^^^^^^
+json.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
+2026-04-13 14:08:55 | ERROR    | weather:fetch_future_weather | ❌ Помилка мережі при завантаженні прогнозу погоди на майбутнє: Network Timeout
+Traceback (most recent call last):
+  File "D:\smart_energy_edge\app\services\weather.py", line 58, in fetch_future_weather
+    response = requests.get(url, params=params)
+  File "C:\Python313\Lib\unittest\mock.py", line 1167, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\unittest\mock.py", line 1171, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\unittest\mock.py", line 1226, in _execute_mock_call
+    raise effect
+requests.exceptions.RequestException: Network Timeout
+2026-04-13 14:24:03 | ERROR    | mqtt_client:on_message | ❌ Помилка парсингу JSON з MQTT (можливо биті дані): Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
+Traceback (most recent call last):
+  File "D:\smart_energy_edge\app\services\mqtt_client.py", line 27, in on_message
+    data = json.loads(payload_str)
+  File "C:\Python313\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "C:\Python313\Lib\json\decoder.py", line 345, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\json\decoder.py", line 361, in raw_decode
+    obj, end = self.scan_once(s, idx)
+               ~~~~~~~~~~~~~~^^^^^^^^
+json.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
+2026-04-13 14:24:03 | ERROR    | weather:fetch_future_weather | ❌ Помилка мережі при завантаженні прогнозу погоди на майбутнє: Network Timeout
+Traceback (most recent call last):
+  File "D:\smart_energy_edge\app\services\weather.py", line 58, in fetch_future_weather
+    response = requests.get(url, params=params)
+  File "C:\Python313\Lib\unittest\mock.py", line 1167, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\unittest\mock.py", line 1171, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\unittest\mock.py", line 1226, in _execute_mock_call
+    raise effect
+requests.exceptions.RequestException: Network Timeout
+2026-07-26 16:43:19 | ERROR    | weather:fetch_and_save_weather | ❌ Неочікувана помилка при обробці поточної погоди: (401)
+Reason: Unauthorized
+HTTP response headers: HTTPHeaderDict({'Content-Type': 'application/json; charset=utf-8', 'X-Influxdb-Build': 'OSS', 'X-Influxdb-Version': 'v2.7.12', 'X-Platform-Error-Code': 'unauthorized', 'Date': 'Sun, 26 Jul 2026 14:43:19 GMT', 'Content-Length': '55'})
+HTTP response body: {"code":"unauthorized","message":"unauthorized access"}
+Traceback (most recent call last):
+  File "D:\smart_energy_edge\app\services\weather.py", line 35, in fetch_and_save_weather
+    save_weather(timestamp_unix, temp, cloud, solar)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\app\db\database.py", line 62, in save_weather
+    write_api.write(bucket=INFLUX_BUCKET, org=INFLUX_ORG, record=point)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\client\write_api.py", line 381, in write
+    results = list(map(write_payload, payloads.items()))
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\client\write_api.py", line 379, in write_payload
+    return self._post_write(_async_req, bucket, org, final_string, payload[0])
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\client\write_api.py", line 516, in _post_write
+    return self._write_service.post_write(org=org, bucket=bucket, body=body, precision=precision,
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                          async_req=_async_req,
+                                          ^^^^^^^^^^^^^^^^^^^^^
+                                          content_type="text/plain; charset=utf-8",
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                          **kwargs)
+                                          ^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\service\write_service.py", line 60, in post_write
+    (data) = self.post_write_with_http_info(org, bucket, body, **kwargs)  # noqa: E501
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\service\write_service.py", line 90, in post_write_with_http_info
+    return self.api_client.call_api(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        '/api/v2/write', 'POST',
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<12 lines>...
+        collection_formats={},
+        ^^^^^^^^^^^^^^^^^^^^^^
+        urlopen_kw=kwargs.get('urlopen_kw', None))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\api_client.py", line 343, in call_api
+    return self.__call_api(resource_path, method,
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+                           path_params, query_params, header_params,
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+                           _return_http_data_only, collection_formats,
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                           _preload_content, _request_timeout, urlopen_kw)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\api_client.py", line 173, in __call_api
+    response_data = self.request(
+        method, url, query_params=query_params, headers=header_params,
+        post_params=post_params, body=body,
+        _preload_content=_preload_content,
+        _request_timeout=_request_timeout, **urlopen_kw)
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\api_client.py", line 388, in request
+    return self.rest_client.POST(url,
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^
+                                 query_params=query_params,
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+                                 body=body,
+                                 ^^^^^^^^^^
+                                 **urlopen_kw)
+                                 ^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\rest.py", line 311, in POST
+    return self.request("POST", url,
+           ~~~~~~~~~~~~^^^^^^^^^^^^^
+                        headers=headers,
+                        ^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+                        body=body,
+                        ^^^^^^^^^^
+                        **urlopen_kw)
+                        ^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\rest.py", line 261, in request
+    raise ApiException(http_resp=r)
+influxdb_client.rest.ApiException: (401)
+Reason: Unauthorized
+HTTP response headers: HTTPHeaderDict({'Content-Type': 'application/json; charset=utf-8', 'X-Influxdb-Build': 'OSS', 'X-Influxdb-Version': 'v2.7.12', 'X-Platform-Error-Code': 'unauthorized', 'Date': 'Sun, 26 Jul 2026 14:43:19 GMT', 'Content-Length': '55'})
+HTTP response body: {"code":"unauthorized","message":"unauthorized access"}
+
+2026-07-26 16:43:19 | ERROR    | weather:fetch_future_weather | ❌ Неочікувана помилка при обробці прогнозу погоди: (401)
+Reason: Unauthorized
+HTTP response headers: HTTPHeaderDict({'Content-Type': 'application/json; charset=utf-8', 'X-Influxdb-Build': 'OSS', 'X-Influxdb-Version': 'v2.7.12', 'X-Platform-Error-Code': 'unauthorized', 'Date': 'Sun, 26 Jul 2026 14:43:19 GMT', 'Content-Length': '55'})
+HTTP response body: {"code":"unauthorized","message":"unauthorized access"}
+Traceback (most recent call last):
+  File "D:\smart_energy_edge\app\services\weather.py", line 80, in fetch_future_weather
+    save_future_weather(target_timestamp_unix, temp_val, cloud_val, solar_val)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\app\db\database.py", line 73, in save_future_weather
+    write_api.write(bucket=INFLUX_BUCKET, org=INFLUX_ORG, record=point)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\client\write_api.py", line 381, in write
+    results = list(map(write_payload, payloads.items()))
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\client\write_api.py", line 379, in write_payload
+    return self._post_write(_async_req, bucket, org, final_string, payload[0])
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\client\write_api.py", line 516, in _post_write
+    return self._write_service.post_write(org=org, bucket=bucket, body=body, precision=precision,
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                          async_req=_async_req,
+                                          ^^^^^^^^^^^^^^^^^^^^^
+                                          content_type="text/plain; charset=utf-8",
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                          **kwargs)
+                                          ^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\service\write_service.py", line 60, in post_write
+    (data) = self.post_write_with_http_info(org, bucket, body, **kwargs)  # noqa: E501
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\service\write_service.py", line 90, in post_write_with_http_info
+    return self.api_client.call_api(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        '/api/v2/write', 'POST',
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<12 lines>...
+        collection_formats={},
+        ^^^^^^^^^^^^^^^^^^^^^^
+        urlopen_kw=kwargs.get('urlopen_kw', None))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\api_client.py", line 343, in call_api
+    return self.__call_api(resource_path, method,
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+                           path_params, query_params, header_params,
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+                           _return_http_data_only, collection_formats,
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                           _preload_content, _request_timeout, urlopen_kw)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\api_client.py", line 173, in __call_api
+    response_data = self.request(
+        method, url, query_params=query_params, headers=header_params,
+        post_params=post_params, body=body,
+        _preload_content=_preload_content,
+        _request_timeout=_request_timeout, **urlopen_kw)
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\api_client.py", line 388, in request
+    return self.rest_client.POST(url,
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^
+                                 query_params=query_params,
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+                                 body=body,
+                                 ^^^^^^^^^^
+                                 **urlopen_kw)
+                                 ^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\rest.py", line 311, in POST
+    return self.request("POST", url,
+           ~~~~~~~~~~~~^^^^^^^^^^^^^
+                        headers=headers,
+                        ^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+                        body=body,
+                        ^^^^^^^^^^
+                        **urlopen_kw)
+                        ^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\rest.py", line 261, in request
+    raise ApiException(http_resp=r)
+influxdb_client.rest.ApiException: (401)
+Reason: Unauthorized
+HTTP response headers: HTTPHeaderDict({'Content-Type': 'application/json; charset=utf-8', 'X-Influxdb-Build': 'OSS', 'X-Influxdb-Version': 'v2.7.12', 'X-Platform-Error-Code': 'unauthorized', 'Date': 'Sun, 26 Jul 2026 14:43:19 GMT', 'Content-Length': '55'})
+HTTP response body: {"code":"unauthorized","message":"unauthorized access"}
+
+2026-07-26 16:43:19 | ERROR    | backfill_weather:get_missing_intervals | ❌ Помилка InfluxDB при пошуку пропусків погоди: (401)
+Reason: Unauthorized
+HTTP response headers: HTTPHeaderDict({'Content-Type': 'application/json; charset=utf-8', 'X-Influxdb-Build': 'OSS', 'X-Influxdb-Version': 'v2.7.12', 'X-Platform-Error-Code': 'unauthorized', 'Date': 'Sun, 26 Jul 2026 14:43:19 GMT', 'Content-Length': '55'})
+HTTP response body: b'{"code":"unauthorized","message":"unauthorized access"}'
+Traceback (most recent call last):
+  File "D:\smart_energy_edge\app\services\backfill_weather.py", line 30, in get_missing_intervals
+    telemetry_result = query_api.query(query=telemetry_query, org=INFLUX_ORG)
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\client\query_api.py", line 203, in query
+    response = self._query_api.post_query(org=org, query=self._create_query(query, self.default_dialect, params),
+                                          async_req=False, _preload_content=False, _return_http_data_only=False)
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\service\query_service.py", line 285, in post_query
+    (data) = self.post_query_with_http_info(**kwargs)  # noqa: E501
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\service\query_service.py", line 311, in post_query_with_http_info
+    return self.api_client.call_api(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        '/api/v2/query', 'POST',
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<12 lines>...
+        collection_formats={},
+        ^^^^^^^^^^^^^^^^^^^^^^
+        urlopen_kw=kwargs.get('urlopen_kw', None))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\api_client.py", line 343, in call_api
+    return self.__call_api(resource_path, method,
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+                           path_params, query_params, header_params,
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+                           _return_http_data_only, collection_formats,
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                           _preload_content, _request_timeout, urlopen_kw)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\api_client.py", line 173, in __call_api
+    response_data = self.request(
+        method, url, query_params=query_params, headers=header_params,
+        post_params=post_params, body=body,
+        _preload_content=_preload_content,
+        _request_timeout=_request_timeout, **urlopen_kw)
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\api_client.py", line 388, in request
+    return self.rest_client.POST(url,
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^
+                                 query_params=query_params,
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+                                 body=body,
+                                 ^^^^^^^^^^
+                                 **urlopen_kw)
+                                 ^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\rest.py", line 311, in POST
+    return self.request("POST", url,
+           ~~~~~~~~~~~~^^^^^^^^^^^^^
+                        headers=headers,
+                        ^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+                        body=body,
+                        ^^^^^^^^^^
+                        **urlopen_kw)
+                        ^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\rest.py", line 261, in request
+    raise ApiException(http_resp=r)
+influxdb_client.rest.ApiException: (401)
+Reason: Unauthorized
+HTTP response headers: HTTPHeaderDict({'Content-Type': 'application/json; charset=utf-8', 'X-Influxdb-Build': 'OSS', 'X-Influxdb-Version': 'v2.7.12', 'X-Platform-Error-Code': 'unauthorized', 'Date': 'Sun, 26 Jul 2026 14:43:19 GMT', 'Content-Length': '55'})
+HTTP response body: b'{"code":"unauthorized","message":"unauthorized access"}'
+
+2026-07-26 16:43:37 | ERROR    | weather:fetch_and_save_weather | ❌ Неочікувана помилка при обробці поточної погоди: (401)
+Reason: Unauthorized
+HTTP response headers: HTTPHeaderDict({'Content-Type': 'application/json; charset=utf-8', 'X-Influxdb-Build': 'OSS', 'X-Influxdb-Version': 'v2.7.12', 'X-Platform-Error-Code': 'unauthorized', 'Date': 'Sun, 26 Jul 2026 14:43:37 GMT', 'Content-Length': '55'})
+HTTP response body: {"code":"unauthorized","message":"unauthorized access"}
+Traceback (most recent call last):
+  File "D:\smart_energy_edge\app\services\weather.py", line 35, in fetch_and_save_weather
+    save_weather(timestamp_unix, temp, cloud, solar)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\app\db\database.py", line 62, in save_weather
+    write_api.write(bucket=INFLUX_BUCKET, org=INFLUX_ORG, record=point)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\client\write_api.py", line 381, in write
+    results = list(map(write_payload, payloads.items()))
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\client\write_api.py", line 379, in write_payload
+    return self._post_write(_async_req, bucket, org, final_string, payload[0])
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\client\write_api.py", line 516, in _post_write
+    return self._write_service.post_write(org=org, bucket=bucket, body=body, precision=precision,
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                          async_req=_async_req,
+                                          ^^^^^^^^^^^^^^^^^^^^^
+                                          content_type="text/plain; charset=utf-8",
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                          **kwargs)
+                                          ^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\service\write_service.py", line 60, in post_write
+    (data) = self.post_write_with_http_info(org, bucket, body, **kwargs)  # noqa: E501
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\service\write_service.py", line 90, in post_write_with_http_info
+    return self.api_client.call_api(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        '/api/v2/write', 'POST',
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<12 lines>...
+        collection_formats={},
+        ^^^^^^^^^^^^^^^^^^^^^^
+        urlopen_kw=kwargs.get('urlopen_kw', None))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\api_client.py", line 343, in call_api
+    return self.__call_api(resource_path, method,
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+                           path_params, query_params, header_params,
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+                           _return_http_data_only, collection_formats,
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                           _preload_content, _request_timeout, urlopen_kw)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\api_client.py", line 173, in __call_api
+    response_data = self.request(
+        method, url, query_params=query_params, headers=header_params,
+        post_params=post_params, body=body,
+        _preload_content=_preload_content,
+        _request_timeout=_request_timeout, **urlopen_kw)
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\api_client.py", line 388, in request
+    return self.rest_client.POST(url,
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^
+                                 query_params=query_params,
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+                                 body=body,
+                                 ^^^^^^^^^^
+                                 **urlopen_kw)
+                                 ^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\rest.py", line 311, in POST
+    return self.request("POST", url,
+           ~~~~~~~~~~~~^^^^^^^^^^^^^
+                        headers=headers,
+                        ^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+                        body=body,
+                        ^^^^^^^^^^
+                        **urlopen_kw)
+                        ^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\rest.py", line 261, in request
+    raise ApiException(http_resp=r)
+influxdb_client.rest.ApiException: (401)
+Reason: Unauthorized
+HTTP response headers: HTTPHeaderDict({'Content-Type': 'application/json; charset=utf-8', 'X-Influxdb-Build': 'OSS', 'X-Influxdb-Version': 'v2.7.12', 'X-Platform-Error-Code': 'unauthorized', 'Date': 'Sun, 26 Jul 2026 14:43:37 GMT', 'Content-Length': '55'})
+HTTP response body: {"code":"unauthorized","message":"unauthorized access"}
+
+2026-07-26 16:43:37 | ERROR    | weather:fetch_future_weather | ❌ Неочікувана помилка при обробці прогнозу погоди: (401)
+Reason: Unauthorized
+HTTP response headers: HTTPHeaderDict({'Content-Type': 'application/json; charset=utf-8', 'X-Influxdb-Build': 'OSS', 'X-Influxdb-Version': 'v2.7.12', 'X-Platform-Error-Code': 'unauthorized', 'Date': 'Sun, 26 Jul 2026 14:43:37 GMT', 'Content-Length': '55'})
+HTTP response body: {"code":"unauthorized","message":"unauthorized access"}
+Traceback (most recent call last):
+  File "D:\smart_energy_edge\app\services\weather.py", line 80, in fetch_future_weather
+    save_future_weather(target_timestamp_unix, temp_val, cloud_val, solar_val)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\app\db\database.py", line 73, in save_future_weather
+    write_api.write(bucket=INFLUX_BUCKET, org=INFLUX_ORG, record=point)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\client\write_api.py", line 381, in write
+    results = list(map(write_payload, payloads.items()))
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\client\write_api.py", line 379, in write_payload
+    return self._post_write(_async_req, bucket, org, final_string, payload[0])
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\client\write_api.py", line 516, in _post_write
+    return self._write_service.post_write(org=org, bucket=bucket, body=body, precision=precision,
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                          async_req=_async_req,
+                                          ^^^^^^^^^^^^^^^^^^^^^
+                                          content_type="text/plain; charset=utf-8",
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                          **kwargs)
+                                          ^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\service\write_service.py", line 60, in post_write
+    (data) = self.post_write_with_http_info(org, bucket, body, **kwargs)  # noqa: E501
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\service\write_service.py", line 90, in post_write_with_http_info
+    return self.api_client.call_api(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        '/api/v2/write', 'POST',
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<12 lines>...
+        collection_formats={},
+        ^^^^^^^^^^^^^^^^^^^^^^
+        urlopen_kw=kwargs.get('urlopen_kw', None))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\api_client.py", line 343, in call_api
+    return self.__call_api(resource_path, method,
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+                           path_params, query_params, header_params,
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+                           _return_http_data_only, collection_formats,
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                           _preload_content, _request_timeout, urlopen_kw)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\api_client.py", line 173, in __call_api
+    response_data = self.request(
+        method, url, query_params=query_params, headers=header_params,
+        post_params=post_params, body=body,
+        _preload_content=_preload_content,
+        _request_timeout=_request_timeout, **urlopen_kw)
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\api_client.py", line 388, in request
+    return self.rest_client.POST(url,
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^
+                                 query_params=query_params,
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+                                 body=body,
+                                 ^^^^^^^^^^
+                                 **urlopen_kw)
+                                 ^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\rest.py", line 311, in POST
+    return self.request("POST", url,
+           ~~~~~~~~~~~~^^^^^^^^^^^^^
+                        headers=headers,
+                        ^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+                        body=body,
+                        ^^^^^^^^^^
+                        **urlopen_kw)
+                        ^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\rest.py", line 261, in request
+    raise ApiException(http_resp=r)
+influxdb_client.rest.ApiException: (401)
+Reason: Unauthorized
+HTTP response headers: HTTPHeaderDict({'Content-Type': 'application/json; charset=utf-8', 'X-Influxdb-Build': 'OSS', 'X-Influxdb-Version': 'v2.7.12', 'X-Platform-Error-Code': 'unauthorized', 'Date': 'Sun, 26 Jul 2026 14:43:37 GMT', 'Content-Length': '55'})
+HTTP response body: {"code":"unauthorized","message":"unauthorized access"}
+
+2026-07-26 16:43:37 | ERROR    | backfill_weather:get_missing_intervals | ❌ Помилка InfluxDB при пошуку пропусків погоди: (401)
+Reason: Unauthorized
+HTTP response headers: HTTPHeaderDict({'Content-Type': 'application/json; charset=utf-8', 'X-Influxdb-Build': 'OSS', 'X-Influxdb-Version': 'v2.7.12', 'X-Platform-Error-Code': 'unauthorized', 'Date': 'Sun, 26 Jul 2026 14:43:37 GMT', 'Content-Length': '55'})
+HTTP response body: b'{"code":"unauthorized","message":"unauthorized access"}'
+Traceback (most recent call last):
+  File "D:\smart_energy_edge\app\services\backfill_weather.py", line 30, in get_missing_intervals
+    telemetry_result = query_api.query(query=telemetry_query, org=INFLUX_ORG)
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\client\query_api.py", line 203, in query
+    response = self._query_api.post_query(org=org, query=self._create_query(query, self.default_dialect, params),
+                                          async_req=False, _preload_content=False, _return_http_data_only=False)
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\service\query_service.py", line 285, in post_query
+    (data) = self.post_query_with_http_info(**kwargs)  # noqa: E501
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\service\query_service.py", line 311, in post_query_with_http_info
+    return self.api_client.call_api(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        '/api/v2/query', 'POST',
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<12 lines>...
+        collection_formats={},
+        ^^^^^^^^^^^^^^^^^^^^^^
+        urlopen_kw=kwargs.get('urlopen_kw', None))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\api_client.py", line 343, in call_api
+    return self.__call_api(resource_path, method,
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+                           path_params, query_params, header_params,
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+                           _return_http_data_only, collection_formats,
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                           _preload_content, _request_timeout, urlopen_kw)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\api_client.py", line 173, in __call_api
+    response_data = self.request(
+        method, url, query_params=query_params, headers=header_params,
+        post_params=post_params, body=body,
+        _preload_content=_preload_content,
+        _request_timeout=_request_timeout, **urlopen_kw)
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\api_client.py", line 388, in request
+    return self.rest_client.POST(url,
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^
+                                 query_params=query_params,
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+                                 body=body,
+                                 ^^^^^^^^^^
+                                 **urlopen_kw)
+                                 ^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\rest.py", line 311, in POST
+    return self.request("POST", url,
+           ~~~~~~~~~~~~^^^^^^^^^^^^^
+                        headers=headers,
+                        ^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+                        body=body,
+                        ^^^^^^^^^^
+                        **urlopen_kw)
+                        ^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\rest.py", line 261, in request
+    raise ApiException(http_resp=r)
+influxdb_client.rest.ApiException: (401)
+Reason: Unauthorized
+HTTP response headers: HTTPHeaderDict({'Content-Type': 'application/json; charset=utf-8', 'X-Influxdb-Build': 'OSS', 'X-Influxdb-Version': 'v2.7.12', 'X-Platform-Error-Code': 'unauthorized', 'Date': 'Sun, 26 Jul 2026 14:43:37 GMT', 'Content-Length': '55'})
+HTTP response body: b'{"code":"unauthorized","message":"unauthorized access"}'
+
+2026-07-26 16:44:38 | ERROR    | weather:fetch_and_save_weather | ❌ Неочікувана помилка при обробці поточної погоди: (401)
+Reason: Unauthorized
+HTTP response headers: HTTPHeaderDict({'Content-Type': 'application/json; charset=utf-8', 'X-Influxdb-Build': 'OSS', 'X-Influxdb-Version': 'v2.7.12', 'X-Platform-Error-Code': 'unauthorized', 'Date': 'Sun, 26 Jul 2026 14:44:38 GMT', 'Content-Length': '55'})
+HTTP response body: {"code":"unauthorized","message":"unauthorized access"}
+Traceback (most recent call last):
+  File "D:\smart_energy_edge\app\services\weather.py", line 35, in fetch_and_save_weather
+    save_weather(timestamp_unix, temp, cloud, solar)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\app\db\database.py", line 62, in save_weather
+    write_api.write(bucket=INFLUX_BUCKET, org=INFLUX_ORG, record=point)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\client\write_api.py", line 381, in write
+    results = list(map(write_payload, payloads.items()))
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\client\write_api.py", line 379, in write_payload
+    return self._post_write(_async_req, bucket, org, final_string, payload[0])
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\client\write_api.py", line 516, in _post_write
+    return self._write_service.post_write(org=org, bucket=bucket, body=body, precision=precision,
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                          async_req=_async_req,
+                                          ^^^^^^^^^^^^^^^^^^^^^
+                                          content_type="text/plain; charset=utf-8",
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                          **kwargs)
+                                          ^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\service\write_service.py", line 60, in post_write
+    (data) = self.post_write_with_http_info(org, bucket, body, **kwargs)  # noqa: E501
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\service\write_service.py", line 90, in post_write_with_http_info
+    return self.api_client.call_api(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        '/api/v2/write', 'POST',
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<12 lines>...
+        collection_formats={},
+        ^^^^^^^^^^^^^^^^^^^^^^
+        urlopen_kw=kwargs.get('urlopen_kw', None))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\api_client.py", line 343, in call_api
+    return self.__call_api(resource_path, method,
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+                           path_params, query_params, header_params,
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+                           _return_http_data_only, collection_formats,
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                           _preload_content, _request_timeout, urlopen_kw)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\api_client.py", line 173, in __call_api
+    response_data = self.request(
+        method, url, query_params=query_params, headers=header_params,
+        post_params=post_params, body=body,
+        _preload_content=_preload_content,
+        _request_timeout=_request_timeout, **urlopen_kw)
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\api_client.py", line 388, in request
+    return self.rest_client.POST(url,
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^
+                                 query_params=query_params,
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+                                 body=body,
+                                 ^^^^^^^^^^
+                                 **urlopen_kw)
+                                 ^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\rest.py", line 311, in POST
+    return self.request("POST", url,
+           ~~~~~~~~~~~~^^^^^^^^^^^^^
+                        headers=headers,
+                        ^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+                        body=body,
+                        ^^^^^^^^^^
+                        **urlopen_kw)
+                        ^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\rest.py", line 261, in request
+    raise ApiException(http_resp=r)
+influxdb_client.rest.ApiException: (401)
+Reason: Unauthorized
+HTTP response headers: HTTPHeaderDict({'Content-Type': 'application/json; charset=utf-8', 'X-Influxdb-Build': 'OSS', 'X-Influxdb-Version': 'v2.7.12', 'X-Platform-Error-Code': 'unauthorized', 'Date': 'Sun, 26 Jul 2026 14:44:38 GMT', 'Content-Length': '55'})
+HTTP response body: {"code":"unauthorized","message":"unauthorized access"}
+
+2026-07-26 16:45:38 | ERROR    | weather:fetch_and_save_weather | ❌ Неочікувана помилка при обробці поточної погоди: (401)
+Reason: Unauthorized
+HTTP response headers: HTTPHeaderDict({'Content-Type': 'application/json; charset=utf-8', 'X-Influxdb-Build': 'OSS', 'X-Influxdb-Version': 'v2.7.12', 'X-Platform-Error-Code': 'unauthorized', 'Date': 'Sun, 26 Jul 2026 14:45:38 GMT', 'Content-Length': '55'})
+HTTP response body: {"code":"unauthorized","message":"unauthorized access"}
+Traceback (most recent call last):
+  File "D:\smart_energy_edge\app\services\weather.py", line 35, in fetch_and_save_weather
+    save_weather(timestamp_unix, temp, cloud, solar)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\app\db\database.py", line 62, in save_weather
+    write_api.write(bucket=INFLUX_BUCKET, org=INFLUX_ORG, record=point)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\client\write_api.py", line 381, in write
+    results = list(map(write_payload, payloads.items()))
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\client\write_api.py", line 379, in write_payload
+    return self._post_write(_async_req, bucket, org, final_string, payload[0])
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\client\write_api.py", line 516, in _post_write
+    return self._write_service.post_write(org=org, bucket=bucket, body=body, precision=precision,
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                          async_req=_async_req,
+                                          ^^^^^^^^^^^^^^^^^^^^^
+                                          content_type="text/plain; charset=utf-8",
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                          **kwargs)
+                                          ^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\service\write_service.py", line 60, in post_write
+    (data) = self.post_write_with_http_info(org, bucket, body, **kwargs)  # noqa: E501
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\service\write_service.py", line 90, in post_write_with_http_info
+    return self.api_client.call_api(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        '/api/v2/write', 'POST',
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<12 lines>...
+        collection_formats={},
+        ^^^^^^^^^^^^^^^^^^^^^^
+        urlopen_kw=kwargs.get('urlopen_kw', None))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\api_client.py", line 343, in call_api
+    return self.__call_api(resource_path, method,
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+                           path_params, query_params, header_params,
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+                           _return_http_data_only, collection_formats,
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                           _preload_content, _request_timeout, urlopen_kw)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\api_client.py", line 173, in __call_api
+    response_data = self.request(
+        method, url, query_params=query_params, headers=header_params,
+        post_params=post_params, body=body,
+        _preload_content=_preload_content,
+        _request_timeout=_request_timeout, **urlopen_kw)
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\api_client.py", line 388, in request
+    return self.rest_client.POST(url,
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^
+                                 query_params=query_params,
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+                                 body=body,
+                                 ^^^^^^^^^^
+                                 **urlopen_kw)
+                                 ^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\rest.py", line 311, in POST
+    return self.request("POST", url,
+           ~~~~~~~~~~~~^^^^^^^^^^^^^
+                        headers=headers,
+                        ^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+                        body=body,
+                        ^^^^^^^^^^
+                        **urlopen_kw)
+                        ^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\rest.py", line 261, in request
+    raise ApiException(http_resp=r)
+influxdb_client.rest.ApiException: (401)
+Reason: Unauthorized
+HTTP response headers: HTTPHeaderDict({'Content-Type': 'application/json; charset=utf-8', 'X-Influxdb-Build': 'OSS', 'X-Influxdb-Version': 'v2.7.12', 'X-Platform-Error-Code': 'unauthorized', 'Date': 'Sun, 26 Jul 2026 14:45:38 GMT', 'Content-Length': '55'})
+HTTP response body: {"code":"unauthorized","message":"unauthorized access"}
+
+2026-07-26 16:45:38 | ERROR    | weather:fetch_future_weather | ❌ Неочікувана помилка при обробці прогнозу погоди: (401)
+Reason: Unauthorized
+HTTP response headers: HTTPHeaderDict({'Content-Type': 'application/json; charset=utf-8', 'X-Influxdb-Build': 'OSS', 'X-Influxdb-Version': 'v2.7.12', 'X-Platform-Error-Code': 'unauthorized', 'Date': 'Sun, 26 Jul 2026 14:45:38 GMT', 'Content-Length': '55'})
+HTTP response body: {"code":"unauthorized","message":"unauthorized access"}
+Traceback (most recent call last):
+  File "D:\smart_energy_edge\app\services\weather.py", line 80, in fetch_future_weather
+    save_future_weather(target_timestamp_unix, temp_val, cloud_val, solar_val)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\app\db\database.py", line 73, in save_future_weather
+    write_api.write(bucket=INFLUX_BUCKET, org=INFLUX_ORG, record=point)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\client\write_api.py", line 381, in write
+    results = list(map(write_payload, payloads.items()))
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\client\write_api.py", line 379, in write_payload
+    return self._post_write(_async_req, bucket, org, final_string, payload[0])
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\client\write_api.py", line 516, in _post_write
+    return self._write_service.post_write(org=org, bucket=bucket, body=body, precision=precision,
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                          async_req=_async_req,
+                                          ^^^^^^^^^^^^^^^^^^^^^
+                                          content_type="text/plain; charset=utf-8",
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                          **kwargs)
+                                          ^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\service\write_service.py", line 60, in post_write
+    (data) = self.post_write_with_http_info(org, bucket, body, **kwargs)  # noqa: E501
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\service\write_service.py", line 90, in post_write_with_http_info
+    return self.api_client.call_api(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        '/api/v2/write', 'POST',
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<12 lines>...
+        collection_formats={},
+        ^^^^^^^^^^^^^^^^^^^^^^
+        urlopen_kw=kwargs.get('urlopen_kw', None))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\api_client.py", line 343, in call_api
+    return self.__call_api(resource_path, method,
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+                           path_params, query_params, header_params,
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+                           _return_http_data_only, collection_formats,
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                           _preload_content, _request_timeout, urlopen_kw)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\api_client.py", line 173, in __call_api
+    response_data = self.request(
+        method, url, query_params=query_params, headers=header_params,
+        post_params=post_params, body=body,
+        _preload_content=_preload_content,
+        _request_timeout=_request_timeout, **urlopen_kw)
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\api_client.py", line 388, in request
+    return self.rest_client.POST(url,
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^
+                                 query_params=query_params,
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+                                 body=body,
+                                 ^^^^^^^^^^
+                                 **urlopen_kw)
+                                 ^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\rest.py", line 311, in POST
+    return self.request("POST", url,
+           ~~~~~~~~~~~~^^^^^^^^^^^^^
+                        headers=headers,
+                        ^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+                        body=body,
+                        ^^^^^^^^^^
+                        **urlopen_kw)
+                        ^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\rest.py", line 261, in request
+    raise ApiException(http_resp=r)
+influxdb_client.rest.ApiException: (401)
+Reason: Unauthorized
+HTTP response headers: HTTPHeaderDict({'Content-Type': 'application/json; charset=utf-8', 'X-Influxdb-Build': 'OSS', 'X-Influxdb-Version': 'v2.7.12', 'X-Platform-Error-Code': 'unauthorized', 'Date': 'Sun, 26 Jul 2026 14:45:38 GMT', 'Content-Length': '55'})
+HTTP response body: {"code":"unauthorized","message":"unauthorized access"}
+
+2026-07-26 16:46:37 | ERROR    | ml_pipeline:query_influx_to_df | ❌ Помилка читання з InfluxDB: (401)
+Reason: Unauthorized
+HTTP response headers: HTTPHeaderDict({'Content-Type': 'application/json; charset=utf-8', 'X-Influxdb-Build': 'OSS', 'X-Influxdb-Version': 'v2.7.12', 'X-Platform-Error-Code': 'unauthorized', 'Date': 'Sun, 26 Jul 2026 14:46:37 GMT', 'Content-Length': '55'})
+HTTP response body: b'{"code":"unauthorized","message":"unauthorized access"}'
+
+2026-07-26 16:46:37 | ERROR    | ml_pipeline:query_influx_to_df | ❌ Помилка читання з InfluxDB: (401)
+Reason: Unauthorized
+HTTP response headers: HTTPHeaderDict({'Content-Type': 'application/json; charset=utf-8', 'X-Influxdb-Build': 'OSS', 'X-Influxdb-Version': 'v2.7.12', 'X-Platform-Error-Code': 'unauthorized', 'Date': 'Sun, 26 Jul 2026 14:46:37 GMT', 'Content-Length': '55'})
+HTTP response body: b'{"code":"unauthorized","message":"unauthorized access"}'
+
+2026-07-26 16:46:37 | ERROR    | ml_pipeline:query_influx_to_df | ❌ Помилка читання з InfluxDB: (401)
+Reason: Unauthorized
+HTTP response headers: HTTPHeaderDict({'Content-Type': 'application/json; charset=utf-8', 'X-Influxdb-Build': 'OSS', 'X-Influxdb-Version': 'v2.7.12', 'X-Platform-Error-Code': 'unauthorized', 'Date': 'Sun, 26 Jul 2026 14:46:37 GMT', 'Content-Length': '55'})
+HTTP response body: b'{"code":"unauthorized","message":"unauthorized access"}'
+
+2026-07-26 16:46:38 | ERROR    | weather:fetch_and_save_weather | ❌ Неочікувана помилка при обробці поточної погоди: (401)
+Reason: Unauthorized
+HTTP response headers: HTTPHeaderDict({'Content-Type': 'application/json; charset=utf-8', 'X-Influxdb-Build': 'OSS', 'X-Influxdb-Version': 'v2.7.12', 'X-Platform-Error-Code': 'unauthorized', 'Date': 'Sun, 26 Jul 2026 14:46:38 GMT', 'Content-Length': '55'})
+HTTP response body: {"code":"unauthorized","message":"unauthorized access"}
+Traceback (most recent call last):
+  File "D:\smart_energy_edge\app\services\weather.py", line 35, in fetch_and_save_weather
+    save_weather(timestamp_unix, temp, cloud, solar)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\app\db\database.py", line 62, in save_weather
+    write_api.write(bucket=INFLUX_BUCKET, org=INFLUX_ORG, record=point)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\client\write_api.py", line 381, in write
+    results = list(map(write_payload, payloads.items()))
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\client\write_api.py", line 379, in write_payload
+    return self._post_write(_async_req, bucket, org, final_string, payload[0])
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\client\write_api.py", line 516, in _post_write
+    return self._write_service.post_write(org=org, bucket=bucket, body=body, precision=precision,
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                          async_req=_async_req,
+                                          ^^^^^^^^^^^^^^^^^^^^^
+                                          content_type="text/plain; charset=utf-8",
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                          **kwargs)
+                                          ^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\service\write_service.py", line 60, in post_write
+    (data) = self.post_write_with_http_info(org, bucket, body, **kwargs)  # noqa: E501
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\service\write_service.py", line 90, in post_write_with_http_info
+    return self.api_client.call_api(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        '/api/v2/write', 'POST',
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<12 lines>...
+        collection_formats={},
+        ^^^^^^^^^^^^^^^^^^^^^^
+        urlopen_kw=kwargs.get('urlopen_kw', None))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\api_client.py", line 343, in call_api
+    return self.__call_api(resource_path, method,
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+                           path_params, query_params, header_params,
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+                           _return_http_data_only, collection_formats,
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                           _preload_content, _request_timeout, urlopen_kw)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\api_client.py", line 173, in __call_api
+    response_data = self.request(
+        method, url, query_params=query_params, headers=header_params,
+        post_params=post_params, body=body,
+        _preload_content=_preload_content,
+        _request_timeout=_request_timeout, **urlopen_kw)
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\api_client.py", line 388, in request
+    return self.rest_client.POST(url,
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^
+                                 query_params=query_params,
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+                                 body=body,
+                                 ^^^^^^^^^^
+                                 **urlopen_kw)
+                                 ^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\rest.py", line 311, in POST
+    return self.request("POST", url,
+           ~~~~~~~~~~~~^^^^^^^^^^^^^
+                        headers=headers,
+                        ^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+                        body=body,
+                        ^^^^^^^^^^
+                        **urlopen_kw)
+                        ^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\rest.py", line 261, in request
+    raise ApiException(http_resp=r)
+influxdb_client.rest.ApiException: (401)
+Reason: Unauthorized
+HTTP response headers: HTTPHeaderDict({'Content-Type': 'application/json; charset=utf-8', 'X-Influxdb-Build': 'OSS', 'X-Influxdb-Version': 'v2.7.12', 'X-Platform-Error-Code': 'unauthorized', 'Date': 'Sun, 26 Jul 2026 14:46:38 GMT', 'Content-Length': '55'})
+HTTP response body: {"code":"unauthorized","message":"unauthorized access"}
+
+2026-07-26 16:46:56 | ERROR    | routes:get_latest_predictions | Помилка отримання прогнозів: (401)
+Reason: Unauthorized
+HTTP response headers: HTTPHeaderDict({'Content-Type': 'application/json; charset=utf-8', 'X-Influxdb-Build': 'OSS', 'X-Influxdb-Version': 'v2.7.12', 'X-Platform-Error-Code': 'unauthorized', 'Date': 'Sun, 26 Jul 2026 14:46:56 GMT', 'Content-Length': '55'})
+HTTP response body: b'{"code":"unauthorized","message":"unauthorized access"}'
+
+2026-07-26 16:46:56 | ERROR    | routes:get_latest_predictions | Помилка отримання прогнозів: (401)
+Reason: Unauthorized
+HTTP response headers: HTTPHeaderDict({'Content-Type': 'application/json; charset=utf-8', 'X-Influxdb-Build': 'OSS', 'X-Influxdb-Version': 'v2.7.12', 'X-Platform-Error-Code': 'unauthorized', 'Date': 'Sun, 26 Jul 2026 14:46:56 GMT', 'Content-Length': '55'})
+HTTP response body: b'{"code":"unauthorized","message":"unauthorized access"}'
+
+2026-07-26 16:47:41 | ERROR    | ml_pipeline:query_influx_to_df | ❌ Помилка читання з InfluxDB: HTTPConnection(host='localhost', port=8086): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it
+2026-07-26 16:47:42 | ERROR    | weather:fetch_future_weather | ❌ Неочікувана помилка при обробці прогнозу погоди: HTTPConnection(host='localhost', port=8086): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it
+Traceback (most recent call last):
+  File "D:\smart_energy_edge\venv\Lib\site-packages\urllib3\connection.py", line 204, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "D:\smart_energy_edge\venv\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    raise err
+  File "D:\smart_energy_edge\venv\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\smart_energy_edge\app\services\weather.py", line 80, in fetch_future_weather
+    save_future_weather(target_timestamp_unix, temp_val, cloud_val, solar_val)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\app\db\database.py", line 73, in save_future_weather
+    write_api.write(bucket=INFLUX_BUCKET, org=INFLUX_ORG, record=point)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\client\write_api.py", line 381, in write
+    results = list(map(write_payload, payloads.items()))
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\client\write_api.py", line 379, in write_payload
+    return self._post_write(_async_req, bucket, org, final_string, payload[0])
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\client\write_api.py", line 516, in _post_write
+    return self._write_service.post_write(org=org, bucket=bucket, body=body, precision=precision,
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                          async_req=_async_req,
+                                          ^^^^^^^^^^^^^^^^^^^^^
+                                          content_type="text/plain; charset=utf-8",
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                          **kwargs)
+                                          ^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\service\write_service.py", line 60, in post_write
+    (data) = self.post_write_with_http_info(org, bucket, body, **kwargs)  # noqa: E501
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\service\write_service.py", line 90, in post_write_with_http_info
+    return self.api_client.call_api(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        '/api/v2/write', 'POST',
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<12 lines>...
+        collection_formats={},
+        ^^^^^^^^^^^^^^^^^^^^^^
+        urlopen_kw=kwargs.get('urlopen_kw', None))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\api_client.py", line 343, in call_api
+    return self.__call_api(resource_path, method,
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+                           path_params, query_params, header_params,
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+                           _return_http_data_only, collection_formats,
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                           _preload_content, _request_timeout, urlopen_kw)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\api_client.py", line 173, in __call_api
+    response_data = self.request(
+        method, url, query_params=query_params, headers=header_params,
+        post_params=post_params, body=body,
+        _preload_content=_preload_content,
+        _request_timeout=_request_timeout, **urlopen_kw)
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\api_client.py", line 388, in request
+    return self.rest_client.POST(url,
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^
+                                 query_params=query_params,
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+                                 body=body,
+                                 ^^^^^^^^^^
+                                 **urlopen_kw)
+                                 ^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\rest.py", line 311, in POST
+    return self.request("POST", url,
+           ~~~~~~~~~~~~^^^^^^^^^^^^^
+                        headers=headers,
+                        ^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+                        body=body,
+                        ^^^^^^^^^^
+                        **urlopen_kw)
+                        ^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\rest.py", line 220, in request
+    r = self.pool_manager.request(
+        method, url,
+    ...<3 lines>...
+        headers=headers,
+        **urlopen_kw)
+  File "D:\smart_energy_edge\venv\Lib\site-packages\urllib3\_request_methods.py", line 143, in request
+    return self.request_encode_body(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        method, url, fields=fields, headers=headers, **urlopen_kw
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\urllib3\_request_methods.py", line 278, in request_encode_body
+    return self.urlopen(method, url, **extra_kw)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\urllib3\poolmanager.py", line 457, in urlopen
+    response = conn.urlopen(method, u.request_uri, **kw)
+  File "D:\smart_energy_edge\venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "D:\smart_energy_edge\venv\Lib\site-packages\urllib3\util\retry.py", line 465, in increment
+    raise reraise(type(error), error, _stacktrace)
+          ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\urllib3\util\util.py", line 39, in reraise
+    raise value
+  File "D:\smart_energy_edge\venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "D:\smart_energy_edge\venv\Lib\site-packages\urllib3\connectionpool.py", line 493, in _make_request
+    conn.request(
+    ~~~~~~~~~~~~^
+        method,
+        ^^^^^^^
+    ...<6 lines>...
+        enforce_content_length=enforce_content_length,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\urllib3\connection.py", line 500, in request
+    self.endheaders()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Python313\Lib\http\client.py", line 1333, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\http\client.py", line 1093, in _send_output
+    self.send(msg)
+    ~~~~~~~~~^^^^^
+  File "C:\Python313\Lib\http\client.py", line 1037, in send
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\urllib3\connection.py", line 331, in connect
+    self.sock = self._new_conn()
+                ~~~~~~~~~~~~~~^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\urllib3\connection.py", line 219, in _new_conn
+    raise NewConnectionError(
+        self, f"Failed to establish a new connection: {e}"
+    ) from e
+urllib3.exceptions.NewConnectionError: HTTPConnection(host='localhost', port=8086): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it
+2026-07-26 16:47:42 | ERROR    | weather:fetch_and_save_weather | ❌ Неочікувана помилка при обробці поточної погоди: HTTPConnection(host='localhost', port=8086): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it
+Traceback (most recent call last):
+  File "D:\smart_energy_edge\venv\Lib\site-packages\urllib3\connection.py", line 204, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "D:\smart_energy_edge\venv\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    raise err
+  File "D:\smart_energy_edge\venv\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\smart_energy_edge\app\services\weather.py", line 35, in fetch_and_save_weather
+    save_weather(timestamp_unix, temp, cloud, solar)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\app\db\database.py", line 62, in save_weather
+    write_api.write(bucket=INFLUX_BUCKET, org=INFLUX_ORG, record=point)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\client\write_api.py", line 381, in write
+    results = list(map(write_payload, payloads.items()))
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\client\write_api.py", line 379, in write_payload
+    return self._post_write(_async_req, bucket, org, final_string, payload[0])
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\client\write_api.py", line 516, in _post_write
+    return self._write_service.post_write(org=org, bucket=bucket, body=body, precision=precision,
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                          async_req=_async_req,
+                                          ^^^^^^^^^^^^^^^^^^^^^
+                                          content_type="text/plain; charset=utf-8",
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                          **kwargs)
+                                          ^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\service\write_service.py", line 60, in post_write
+    (data) = self.post_write_with_http_info(org, bucket, body, **kwargs)  # noqa: E501
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\service\write_service.py", line 90, in post_write_with_http_info
+    return self.api_client.call_api(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        '/api/v2/write', 'POST',
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<12 lines>...
+        collection_formats={},
+        ^^^^^^^^^^^^^^^^^^^^^^
+        urlopen_kw=kwargs.get('urlopen_kw', None))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\api_client.py", line 343, in call_api
+    return self.__call_api(resource_path, method,
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+                           path_params, query_params, header_params,
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+                           _return_http_data_only, collection_formats,
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                           _preload_content, _request_timeout, urlopen_kw)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\api_client.py", line 173, in __call_api
+    response_data = self.request(
+        method, url, query_params=query_params, headers=header_params,
+        post_params=post_params, body=body,
+        _preload_content=_preload_content,
+        _request_timeout=_request_timeout, **urlopen_kw)
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\api_client.py", line 388, in request
+    return self.rest_client.POST(url,
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^
+                                 query_params=query_params,
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+                                 body=body,
+                                 ^^^^^^^^^^
+                                 **urlopen_kw)
+                                 ^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\rest.py", line 311, in POST
+    return self.request("POST", url,
+           ~~~~~~~~~~~~^^^^^^^^^^^^^
+                        headers=headers,
+                        ^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+                        body=body,
+                        ^^^^^^^^^^
+                        **urlopen_kw)
+                        ^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\influxdb_client\_sync\rest.py", line 220, in request
+    r = self.pool_manager.request(
+        method, url,
+    ...<3 lines>...
+        headers=headers,
+        **urlopen_kw)
+  File "D:\smart_energy_edge\venv\Lib\site-packages\urllib3\_request_methods.py", line 143, in request
+    return self.request_encode_body(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        method, url, fields=fields, headers=headers, **urlopen_kw
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\urllib3\_request_methods.py", line 278, in request_encode_body
+    return self.urlopen(method, url, **extra_kw)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\urllib3\poolmanager.py", line 457, in urlopen
+    response = conn.urlopen(method, u.request_uri, **kw)
+  File "D:\smart_energy_edge\venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "D:\smart_energy_edge\venv\Lib\site-packages\urllib3\util\retry.py", line 465, in increment
+    raise reraise(type(error), error, _stacktrace)
+          ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\urllib3\util\util.py", line 39, in reraise
+    raise value
+  File "D:\smart_energy_edge\venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "D:\smart_energy_edge\venv\Lib\site-packages\urllib3\connectionpool.py", line 493, in _make_request
+    conn.request(
+    ~~~~~~~~~~~~^
+        method,
+        ^^^^^^^
+    ...<6 lines>...
+        enforce_content_length=enforce_content_length,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\urllib3\connection.py", line 500, in request
+    self.endheaders()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Python313\Lib\http\client.py", line 1333, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\http\client.py", line 1093, in _send_output
+    self.send(msg)
+    ~~~~~~~~~^^^^^
+  File "C:\Python313\Lib\http\client.py", line 1037, in send
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\urllib3\connection.py", line 331, in connect
+    self.sock = self._new_conn()
+                ~~~~~~~~~~~~~~^^
+  File "D:\smart_energy_edge\venv\Lib\site-packages\urllib3\connection.py", line 219, in _new_conn
+    raise NewConnectionError(
+        self, f"Failed to establish a new connection: {e}"
+    ) from e
+urllib3.exceptions.NewConnectionError: HTTPConnection(host='localhost', port=8086): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it
+2026-07-26 16:47:45 | ERROR    | ml_pipeline:query_influx_to_df | ❌ Помилка читання з InfluxDB: HTTPConnection(host='localhost', port=8086): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it
+2026-08-12 16:22:20 | ERROR    | routes:get_latest_predictions | Помилка отримання прогнозів: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Content-Type': 'application/json; charset=utf-8', 'Vary': 'Accept-Encoding', 'X-Influxdb-Build': 'OSS', 'X-Influxdb-Version': 'v2.7.12', 'X-Platform-Error-Code': 'invalid', 'Date': 'Wed, 12 Aug 2026 14:22:20 GMT', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"code":"invalid","message":"unsupported operator \\"+\\" to unary expression"}'
+
+2026-08-12 16:22:21 | ERROR    | routes:get_latest_predictions | Помилка отримання прогнозів: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Content-Type': 'application/json; charset=utf-8', 'Vary': 'Accept-Encoding', 'X-Influxdb-Build': 'OSS', 'X-Influxdb-Version': 'v2.7.12', 'X-Platform-Error-Code': 'invalid', 'Date': 'Wed, 12 Aug 2026 14:22:21 GMT', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"code":"invalid","message":"unsupported operator \\"+\\" to unary expression"}'
+
+2026-08-12 16:22:44 | ERROR    | ml_pipeline:query_influx_to_df | ❌ Помилка читання з InfluxDB: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Content-Type': 'application/json; charset=utf-8', 'Vary': 'Accept-Encoding', 'X-Influxdb-Build': 'OSS', 'X-Influxdb-Version': 'v2.7.12', 'X-Platform-Error-Code': 'invalid', 'Date': 'Wed, 12 Aug 2026 14:22:44 GMT', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"code":"invalid","message":"unsupported operator \\"+\\" to unary expression"}'
+
+2026-08-12 16:25:44 | ERROR    | ml_pipeline:query_influx_to_df | ❌ Помилка читання з InfluxDB: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Content-Type': 'application/json; charset=utf-8', 'Vary': 'Accept-Encoding', 'X-Influxdb-Build': 'OSS', 'X-Influxdb-Version': 'v2.7.12', 'X-Platform-Error-Code': 'invalid', 'Date': 'Wed, 12 Aug 2026 14:25:44 GMT', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"code":"invalid","message":"unsupported operator \\"+\\" to unary expression"}'
+
+2026-08-12 16:27:20 | ERROR    | routes:get_latest_predictions | Помилка отримання прогнозів: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Content-Type': 'application/json; charset=utf-8', 'Vary': 'Accept-Encoding', 'X-Influxdb-Build': 'OSS', 'X-Influxdb-Version': 'v2.7.12', 'X-Platform-Error-Code': 'invalid', 'Date': 'Wed, 12 Aug 2026 14:27:20 GMT', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"code":"invalid","message":"unsupported operator \\"+\\" to unary expression"}'
+
+2026-08-12 16:28:44 | ERROR    | ml_pipeline:query_influx_to_df | ❌ Помилка читання з InfluxDB: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Content-Type': 'application/json; charset=utf-8', 'Vary': 'Accept-Encoding', 'X-Influxdb-Build': 'OSS', 'X-Influxdb-Version': 'v2.7.12', 'X-Platform-Error-Code': 'invalid', 'Date': 'Wed, 12 Aug 2026 14:28:44 GMT', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"code":"invalid","message":"unsupported operator \\"+\\" to unary expression"}'
+
+2026-08-12 16:40:12 | ERROR    | routes:get_latest_predictions | Помилка отримання прогнозів: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Content-Type': 'application/json; charset=utf-8', 'Vary': 'Accept-Encoding', 'X-Influxdb-Build': 'OSS', 'X-Influxdb-Version': 'v2.7.12', 'X-Platform-Error-Code': 'invalid', 'Date': 'Wed, 12 Aug 2026 14:40:12 GMT', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"code":"invalid","message":"unsupported operator \\"+\\" to unary expression"}'
+
+2026-08-12 16:40:12 | ERROR    | routes:get_latest_predictions | Помилка отримання прогнозів: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Content-Type': 'application/json; charset=utf-8', 'Vary': 'Accept-Encoding', 'X-Influxdb-Build': 'OSS', 'X-Influxdb-Version': 'v2.7.12', 'X-Platform-Error-Code': 'invalid', 'Date': 'Wed, 12 Aug 2026 14:40:12 GMT', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"code":"invalid","message":"unsupported operator \\"+\\" to unary expression"}'
+
+2026-08-12 16:49:54 | ERROR    | routes:get_latest_predictions | Помилка отримання прогнозів: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Content-Type': 'application/json; charset=utf-8', 'Vary': 'Accept-Encoding', 'X-Influxdb-Build': 'OSS', 'X-Influxdb-Version': 'v2.7.12', 'X-Platform-Error-Code': 'invalid', 'Date': 'Wed, 12 Aug 2026 14:49:54 GMT', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"code":"invalid","message":"unsupported operator \\"+\\" to unary expression"}'
+
+2026-08-12 16:49:54 | ERROR    | routes:get_latest_predictions | Помилка отримання прогнозів: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Content-Type': 'application/json; charset=utf-8', 'Vary': 'Accept-Encoding', 'X-Influxdb-Build': 'OSS', 'X-Influxdb-Version': 'v2.7.12', 'X-Platform-Error-Code': 'invalid', 'Date': 'Wed, 12 Aug 2026 14:49:54 GMT', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"code":"invalid","message":"unsupported operator \\"+\\" to unary expression"}'
+
+2026-08-12 16:51:46 | ERROR    | ml_pipeline:query_influx_to_df | ❌ Помилка читання з InfluxDB: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Content-Type': 'application/json; charset=utf-8', 'Vary': 'Accept-Encoding', 'X-Influxdb-Build': 'OSS', 'X-Influxdb-Version': 'v2.7.12', 'X-Platform-Error-Code': 'invalid', 'Date': 'Wed, 12 Aug 2026 14:51:46 GMT', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"code":"invalid","message":"unsupported operator \\"+\\" to unary expression"}'
+
+2026-08-12 16:54:46 | ERROR    | ml_pipeline:query_influx_to_df | ❌ Помилка читання з InfluxDB: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Content-Type': 'application/json; charset=utf-8', 'Vary': 'Accept-Encoding', 'X-Influxdb-Build': 'OSS', 'X-Influxdb-Version': 'v2.7.12', 'X-Platform-Error-Code': 'invalid', 'Date': 'Wed, 12 Aug 2026 14:54:46 GMT', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"code":"invalid","message":"unsupported operator \\"+\\" to unary expression"}'
+
+2026-08-12 16:54:55 | ERROR    | routes:get_latest_predictions | Помилка отримання прогнозів: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Content-Type': 'application/json; charset=utf-8', 'Vary': 'Accept-Encoding', 'X-Influxdb-Build': 'OSS', 'X-Influxdb-Version': 'v2.7.12', 'X-Platform-Error-Code': 'invalid', 'Date': 'Wed, 12 Aug 2026 14:54:55 GMT', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"code":"invalid","message":"unsupported operator \\"+\\" to unary expression"}'
+
+2026-08-12 16:57:46 | ERROR    | ml_pipeline:query_influx_to_df | ❌ Помилка читання з InfluxDB: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Content-Type': 'application/json; charset=utf-8', 'Vary': 'Accept-Encoding', 'X-Influxdb-Build': 'OSS', 'X-Influxdb-Version': 'v2.7.12', 'X-Platform-Error-Code': 'invalid', 'Date': 'Wed, 12 Aug 2026 14:57:46 GMT', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"code":"invalid","message":"unsupported operator \\"+\\" to unary expression"}'
+
+2026-08-12 16:59:55 | ERROR    | routes:get_latest_predictions | Помилка отримання прогнозів: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Content-Type': 'application/json; charset=utf-8', 'Vary': 'Accept-Encoding', 'X-Influxdb-Build': 'OSS', 'X-Influxdb-Version': 'v2.7.12', 'X-Platform-Error-Code': 'invalid', 'Date': 'Wed, 12 Aug 2026 14:59:55 GMT', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"code":"invalid","message":"unsupported operator \\"+\\" to unary expression"}'
+
+2026-08-12 17:00:46 | ERROR    | ml_pipeline:query_influx_to_df | ❌ Помилка читання з InfluxDB: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Content-Type': 'application/json; charset=utf-8', 'Vary': 'Accept-Encoding', 'X-Influxdb-Build': 'OSS', 'X-Influxdb-Version': 'v2.7.12', 'X-Platform-Error-Code': 'invalid', 'Date': 'Wed, 12 Aug 2026 15:00:46 GMT', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"code":"invalid","message":"unsupported operator \\"+\\" to unary expression"}'
+
+2026-08-12 17:03:06 | ERROR    | routes:get_latest_predictions | Помилка отримання прогнозів: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Content-Type': 'application/json; charset=utf-8', 'Vary': 'Accept-Encoding', 'X-Influxdb-Build': 'OSS', 'X-Influxdb-Version': 'v2.7.12', 'X-Platform-Error-Code': 'invalid', 'Date': 'Wed, 12 Aug 2026 15:03:06 GMT', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"code":"invalid","message":"unsupported operator \\"+\\" to unary expression"}'
+
+2026-08-12 17:03:06 | ERROR    | routes:get_latest_predictions | Помилка отримання прогнозів: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Content-Type': 'application/json; charset=utf-8', 'Vary': 'Accept-Encoding', 'X-Influxdb-Build': 'OSS', 'X-Influxdb-Version': 'v2.7.12', 'X-Platform-Error-Code': 'invalid', 'Date': 'Wed, 12 Aug 2026 15:03:06 GMT', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"code":"invalid","message":"unsupported operator \\"+\\" to unary expression"}'
+
+2026-08-12 17:03:46 | ERROR    | ml_pipeline:query_influx_to_df | ❌ Помилка читання з InfluxDB: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Content-Type': 'application/json; charset=utf-8', 'Vary': 'Accept-Encoding', 'X-Influxdb-Build': 'OSS', 'X-Influxdb-Version': 'v2.7.12', 'X-Platform-Error-Code': 'invalid', 'Date': 'Wed, 12 Aug 2026 15:03:46 GMT', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"code":"invalid","message":"unsupported operator \\"+\\" to unary expression"}'
+
+2026-08-12 17:06:46 | ERROR    | ml_pipeline:query_influx_to_df | ❌ Помилка читання з InfluxDB: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Content-Type': 'application/json; charset=utf-8', 'Vary': 'Accept-Encoding', 'X-Influxdb-Build': 'OSS', 'X-Influxdb-Version': 'v2.7.12', 'X-Platform-Error-Code': 'invalid', 'Date': 'Wed, 12 Aug 2026 15:06:46 GMT', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"code":"invalid","message":"unsupported operator \\"+\\" to unary expression"}'
+
+2026-08-12 17:08:07 | ERROR    | routes:get_latest_predictions | Помилка отримання прогнозів: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Content-Type': 'application/json; charset=utf-8', 'Vary': 'Accept-Encoding', 'X-Influxdb-Build': 'OSS', 'X-Influxdb-Version': 'v2.7.12', 'X-Platform-Error-Code': 'invalid', 'Date': 'Wed, 12 Aug 2026 15:08:07 GMT', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"code":"invalid","message":"unsupported operator \\"+\\" to unary expression"}'
+
+2026-08-12 17:09:46 | ERROR    | ml_pipeline:query_influx_to_df | ❌ Помилка читання з InfluxDB: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Content-Type': 'application/json; charset=utf-8', 'Vary': 'Accept-Encoding', 'X-Influxdb-Build': 'OSS', 'X-Influxdb-Version': 'v2.7.12', 'X-Platform-Error-Code': 'invalid', 'Date': 'Wed, 12 Aug 2026 15:09:46 GMT', 'Transfer-Encoding': 'chunked'})
+HTTP response body: b'{"code":"invalid","message":"unsupported operator \\"+\\" to unary expression"}'
+

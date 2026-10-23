@@ -13,7 +13,13 @@ void tearDown(void) {}
 
 // ТЕСТ 1: Ліміт розміру MQTT-пакета (IoT Payload Constraint)
 void test_mqtt_payload_size() {
-    TelemetryPacket p = {1715000000, {18.45f, 4.12f}, {12.60f, -1.50f}};
+    TelemetryPacket p;
+    p.timestamp = 1715000000;
+    p.solar.voltage = 18.45f;
+    p.solar.current = 4.12f;
+    p.battery.voltage = 12.60f;
+    p.battery.current = -1.50f;
+
     JsonDocument doc;
     doc["ts"] = p.timestamp;
     doc["sol"]["v"] = p.solar.voltage; doc["sol"]["i"] = p.solar.current;
