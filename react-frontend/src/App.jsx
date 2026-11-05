@@ -7,8 +7,14 @@ import TelemetryChart from './components/TelemetryChart';
 import PredictionChart from './components/PredictionChart';
 import DataTable from './components/DataTable';
 
-const TELEMETRY_API = import.meta.env.VITE_TELEMETRY_API || 'http://localhost:6006/api/v1';
-const ML_API = import.meta.env.VITE_ML_API || 'http://localhost:8000/api/predictions';
+const TELEMETRY_API =
+  import.meta.env.VITE_TELEMETRY_API ||
+  'http://localhost:6006/api/v1';
+
+const ML_BASE =
+  import.meta.env.VITE_ML_API ||
+  'http://localhost:8000/api';
+
 
 function App() {
   const [telemetry, setTelemetry] = useState([]);
